@@ -1,0 +1,136 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #1a1a1a;
+  position: relative;
+  display: flex; justify-content: center; align-items: center;
+  min-height: 100vh; padding: 20px;
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(15px); border-radius: 20px; padding: 30px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  display: flex; flex-direction: column;
+  z-index: 1;
+}
+
+h1 { text-align:center; color:#333; font-weight:600; }
+p { text-align:center; color:#555; margin-bottom:20px; }
+
+.task-input { display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap; }
+.task-input input {
+  flex:1; padding:14px; border:none; border-radius:12px; font-size:15px;
+  outline:none; box-shadow:0 3px 8px rgba(0,0,0,0.1);
+}
+.task-input button {
+  padding:14px 20px; border:none; border-radius:12px; background:#333;
+  color:white; font-size:16px; cursor:pointer; transition:0.3s;
+}
+.task-input button:hover { background:#555; transform:scale(1.05); }
+
+.stats { display:flex; justify-content:space-around; margin:15px 0; gap:10px; flex-shrink: 0; flex-wrap:wrap; }
+.stat { background:white; padding:12px; border-radius:12px; text-align:center;
+  flex:1; box-shadow:0 3px 10px rgba(0,0,0,0.1); 
+}
+.stat span { display:block; font-size:18px; font-weight:bold; margin-top:5px; color:inherit; }
+
+.tabs { display:flex; justify-content:center; margin:15px 0; gap:10px; flex-wrap:wrap; flex-shrink: 0;}
+.tab { padding:10px 20px; border:none; background:#eee; border-radius:30px; cursor:pointer; transition:0.3s; }
+.tab.active { background:#333; color:white; }
+.tab:hover { background:#444; color:white; }
+
+ul { 
+  list-style:none; padding:10px 15px; 
+  margin:0; flex: 1 1 auto; overflow-y:auto; border-radius: 12px;
+  background: rgba(255,255,255,0.4);
+  scroll-behavior: smooth; /* smooth scrolling */
+  max-height: 60vh; /* limit height for mobile */
+}
+
+/* Modern thin scrollbar */
+ul::-webkit-scrollbar { width: 8px; }
+ul::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius:12px; }
+ul::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius:12px; transition:0.3s; }
+ul::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.35); }
+
+li {
+  background:white; 
+  padding:15px; 
+  margin:12px 0; 
+  border-radius:12px;
+  display:flex; 
+  justify-content:space-between; 
+  align-items:center;
+  box-shadow:0 3px 10px rgba(0,0,0,0.08); 
+  transition:transform 0.2s;
+  flex-wrap:wrap; /* allow wrapping */
+}
+
+.task-left {
+  display:flex; 
+  align-items:center; 
+  gap:12px; 
+  flex:1 1 60%; 
+  min-width:150px; 
+  flex-wrap:wrap;
+}
+
+.task-details { display:flex; flex-direction:column; }
+.task-text { font-size:15px; font-weight:500; }
+.task-date { font-size:12px; color:#777; }
+
+li.completed .task-text { text-decoration:line-through; color:gray; }
+li.completed .status-badge {
+  background:#d4edda; color:#155724; padding:4px 10px; border-radius:12px;
+  font-size:12px; font-weight:600;
+}
+
+.actions {
+  display:flex; 
+  gap:5px; 
+  margin-top:5px;
+  flex:1 1 35%; 
+  justify-content:flex-end;
+}
+.actions button { margin-left:10px; border:none; background:none; cursor:pointer; font-size:18px; transition:0.3s; }
+.actions button:hover { transform:scale(1.2); }
+.edit { color:#007bff; } .delete { color:red; }
+
+#clearCompletedTab {
+  padding:10px 20px; border:none; background:#eee; border-radius:30px; cursor:pointer; transition:0.3s;
+}
+#clearCompletedTab.active { background:#333; color:white; }
+#clearCompletedTab:hover { background:#ff4d4d; color:white; transform:scale(1.05); }
+
+/* Snow effect */
+.snowflake {
+  position: absolute;
+  top: -10px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  pointer-events: none;
+  z-index: 0;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes fall {
+  0% { transform: translateY(0) translateX(0); }
+  100% { transform: translateY(110vh) translateX(20px); }
+}
+
+@media(max-width:480px){
+  li { flex-direction: column; align-items:flex-start; }
+  .actions { justify-content:flex-start; margin-top:10px; }
+  .task-left { flex:1 1 100%; gap:8px; }
+  .task-input { flex-direction:column; }
+  .task-input input, .task-input button { width:100%; }
+  ul { max-height:50vh; } /* adjust scroll height for mobile */
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Todo List</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="./icons_img/Checklist.png" type="image/x-icon">
+</head>
+<body>
+  <div class="container">
+    <h1>To-Dos Task</h1>
+    <p>Stay organized and get things done</p>
+
+    <div class="task-input">
+      <input type="text" id="taskInput" placeholder="What needs to be done?">
+      <input type="date" id="taskDate">
+      <button onclick="addTask()">+ Add</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat">Total Tasks <span id="total">0</span></div>
+      <div class="stat">Active Tasks <span id="active">0</span></div>
+      <div class="stat">Completed Tasks <span id="completed">0</span></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" onclick="filterTasks('all', this)">All</button>
+      <button class="tab" onclick="filterTasks('active', this)">Active</button>
+      <button class="tab" onclick="filterTasks('completed', this)">Completed</button>
+      <button id="clearCompletedTab" onclick="clearCompletedTasksTab()">Clear Completed</button>
+    </div>
+
+    <ul id="taskList"></ul>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
